@@ -70,7 +70,7 @@ function! s:WildignoreFromGitignore(gitpath, isAtRoot)
         if line =~ '/$' | let igstring .= "," . line . "*" | con | endif
         let agignore .= " --ignore '" . line . "'"
       endfor
-      let agcommand = 'ag %s -i --nocolor -g ""' . agignore
+      let agcommand = 'ag %s --hidden --nocolor -g ""' . agignore
       let g:ctrlp_user_command = [
           \ '.git', agcommand,
           \ 'find %s -type f'

@@ -1,4 +1,4 @@
-" Vim plugin that finds .gitignore in repo root and sets wildignore from it 
+" Vim plugin that finds .gitignore in repo root and sets wildignore from it
 " Adapted from gitignore <http://www.vim.org/scripts/script.php?script_id=2557>
 " by Adam Bellaire
 " Author: Pine Wu <https://github.com/octref>
@@ -35,7 +35,7 @@ function! s:WildignoreFromGitignore(gitpath, isAtRoot)
           let line = substitute(line, '/', '', '')
         endif
 
-        if line =~ '/$' 
+        if line =~ '/$'
           let igstring .= "," . line . "*"
         else
           let igstring .= "," . line
@@ -46,8 +46,8 @@ function! s:WildignoreFromGitignore(gitpath, isAtRoot)
         if line =~ "/"
           if fullPath =~ getcwd()
             let pattern = fnamemodify(fullPath, ":.")
-            if pattern =~ "/$" 
-              let pattern .= "*" 
+            if pattern =~ "/$"
+              let pattern .= "*"
             endif
             let igstring .= "," . pattern
           endif
@@ -89,7 +89,7 @@ function! s:RootIgnore()
   let gitdir = finddir(".git", ";")
 
   " At root
-  if gitdir == ".git" 
+  if gitdir == ".git"
     call s:WildignoreFromGitignore(getcwd(), 1)
   " Not at root
   elseif gitdir =~ "/"
